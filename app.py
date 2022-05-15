@@ -8,7 +8,13 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-#localhost:5000/user/James
-@app.route('/user/<name>')
-def user(name):
-    return "<h1>Hello {}??!!</h1>".format(name)
+#create custom error pages
+# invalid url
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"),404
+
+#internal server error
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html"), 500
