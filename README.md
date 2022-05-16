@@ -19,7 +19,7 @@
 - CSS
 - JS
 - BOOTSTRAP
--FLASK~PYTHON
+- FLASK~PYTHON
 
 # Author.
 - Kimberly Eve Olanga
