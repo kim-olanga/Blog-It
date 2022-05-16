@@ -1,7 +1,7 @@
 from flask import Flask, render_template
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
+# from flask_wtf import FlaskForm
+# from wtforms import StringField, SubmitField
+# from wtforms.validators import DataRequired
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -23,13 +23,8 @@ class Users(db.Model):
     def __repr__(self):
         return '<Name %r>' % self.name
 
-#create form class
-class UserForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired()])
-    email = StringField("email", validators=[DataRequired()])
-    submit = SubmitField("submit")
-
-#create the route
-@app.route('/user/add', methods=['GET', 'POST'])
-def add_user():
-    return render_template("add_user.html")
+# #create form class
+# class UserForm(FlaskForm):
+#     name = StringField("name", validators=[DataRequired()])
+#     email = StringField("email", validators=[DataRequired()])
+#     submit = SubmitField("submit")
