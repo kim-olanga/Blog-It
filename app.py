@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -9,18 +9,18 @@ app.config['SECRET_KEY'] = "kimzyy12345"
 
 #create form class
 class NamerForm(FlaskForm):
-    name = StringField("What's Your Name", Validators=[DataRequired()])
+    name = StringField("name", validators=[DataRequired()])
     submit = SubmitField("submit")
 
 #create the first route
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index.html", user_name=name)
 
-#localhost:500/user/john
-# @app.route('/user/<name>')
-# def user(name):
-#     return render_template("user.html",name='john')
+# localhost:500/user/john
+@app.route('/user/<name>')
+def user(name):
+    return render_template("user.html", user_name=name)
 
 
 #create custom error pages
@@ -44,6 +44,6 @@ def name():
         name = form.name.data
         form.name.data = ''
 
-    return render_template("form.html", 
+    return render_template("name.html", 
         name=name, 
         form=form)
