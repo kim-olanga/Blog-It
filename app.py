@@ -5,7 +5,13 @@ from wtforms.validators import DataRequired
 
 #create flask instance
 app = Flask(__name__)
+
+#Add Database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kimberly:kim12345@localhost:5432/blogzz'
+
+#Secret Key
 app.config['SECRET_KEY'] = "kimzyy12345"
+
 
 #create form class
 class NamerForm(FlaskForm):
