@@ -7,8 +7,7 @@ from wtforms.validators import DataRequired
 app = Flask(__name__)
 
 #Add Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kimberly:kim12345@localhost:5432/blogzz'
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 #Secret Key
 app.config['SECRET_KEY'] = "kimzyy12345"
 
