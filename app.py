@@ -2,6 +2,7 @@ from flask import Flask, render_template, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
+
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 # from models import User
@@ -11,11 +12,15 @@ app = Flask(__name__)
 #Add Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 #New database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://kimberly:kim12345@localhost/our_users'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://kimberly:kim12345@localhost/test'
 #Secret Key
 app.config['SECRET_KEY'] = "kimzyy12345"
 #initialize database
 db = SQLAlchemy(app)
+
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    
 
 #create Model
 class User(db.Model):

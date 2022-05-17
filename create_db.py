@@ -8,8 +8,8 @@ my = mysql.connector.connect(
 
 my_cursor = mydb.cursor()
 
-# my_cursor.execute("CREATE DATABASE our_users")
+# my_cursor.execute("CREATE DATABASE test")
 
-my_cursor.execute("SHOW DATABASE")
+my_cursor.execute("SHOW DATABASES")
 for db in my_cursor:
     print(db)
