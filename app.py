@@ -1,10 +1,11 @@
-from flask import Flask, render_template, flash
+from flask import Flask, render_template, flash, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 # from models import User
 
 #create flask instance
@@ -17,10 +18,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://kimberly:kim12345
 app.config['SECRET_KEY'] = "kimzyy12345"
 #initialize database
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
-def update(id):
-    
 
 #create Model
 class User(db.Model):
@@ -38,6 +37,30 @@ class UserForm(FlaskForm):
     name = StringField("Name", validators=[DataRequired()])
     email = StringField("Email", validators=[DataRequired()])
     submit = SubmitField("Submit")
+
+#Update database record
+@app.route('/update/<int:id>', methods=['GET', 'POST'])
+def update(id):
+    form = UserForm()
+    name_to_update = User.querry.get_or_404(id)
+    if request.method =="POST":
+        name_to_update.name = request.form['name']
+        name_to_update.email = request.form['email']
+        try:
+            db.session.commit()
+            flash("User updated successfully!")
+            return render_template("update.html", 
+            form=form,
+            name_to_update = name_to_update)
+        except:
+           flash("Looks like there was a problem updating try again")
+           return render_template("update.html", 
+           form=form,
+           name_to_update = name_to_update) 
+    else:
+        return render_template("update.html", 
+           form=form,
+           name_to_update = name_to_update) 
 
 
 #create form class
