@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "26f1c1f272e0fb06746a7a03b10a442ea10423128b89d8061cf9b405a5e4343a"
+            "sha256": "29db978b045b4d65c944f7e61bf60d2db0c208994c35568bac4a839808bf71fc"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -121,6 +121,14 @@
             "index": "pypi",
             "version": "==2.1.2"
         },
+        "flask-ckeditor": {
+            "hashes": [
+                "sha256:4b6aa0e831616b86c8c393cb1e5dcae8f62c66c16ef4316071dc7ccf77d4c9a1",
+                "sha256:aa95bf2fab8d4379fcbe5786310bb4fbae467016ed0149c407101e0e4c278fa8"
+            ],
+            "index": "pypi",
+            "version": "==0.4.6"
+        },
         "flask-migrate": {
             "hashes": [
                 "sha256:57d6060839e3a7f150eaab6fe4e726d9e3e7cffe2150fb223d73f92421c6d1d9",
@@ -211,7 +219,7 @@
                 "sha256:1208431ca90a8cca1a6b8af391bb53c1a2db74e5d1cef6ddced95d4b2062edc6",
                 "sha256:ea4c597ebf37142f827b8f39299579e31685c31d3a438b59f469406afd0f2539"
             ],
-            "markers": "python_version < '3.10'",
+            "markers": "python_version < '3.9'",
             "version": "==4.11.3"
         },
         "importlib-resources": {

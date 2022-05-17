@@ -13,6 +13,7 @@ mysql-connector-python-rf = "*"
 pymysql = "*"
 cryptography = "*"
 flask-migrate = "*"
+flask-ckeditor = "*"
 
 [dev-packages]
 
