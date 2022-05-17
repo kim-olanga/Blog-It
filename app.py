@@ -1,32 +1,64 @@
 from flask import Flask, render_template, flash
-from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
-from .models import Users
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+# from models import User
 
 #create flask instance
 app = Flask(__name__)
-
-#initialize database
-db = SQLAlchemy(app)
-
 #Add Database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 #Secret Key
 app.config['SECRET_KEY'] = "kimzyy12345"
+#initialize database
+db = SQLAlchemy(app)
+
+#create Model
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    email = db.Column(db.String(120), nullable=False, unique=True)
+    data_added = db.Column(db.DateTime, default=datetime.utcnow)
+
+    #create string
+    def __repr__(self):
+        return '<Name %r>' % self.name
+
+#create form class
+class UserForm(FlaskForm):
+    name = StringField("Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
 
 #create form class
 class NamerForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired()])
-    submit = SubmitField("submit")
+    name = StringField("Name", validators=[DataRequired()])
+    submit = SubmitField("Submit")
 
-#create form class
-class UserForm(FlaskForm):
-    name = StringField("name", validators=[DataRequired()])
-    email = StringField("email", validators=[DataRequired()])
-    submit = SubmitField("submit")
+
+#create the route
+@app.route('/user/add', methods=['GET', 'POST'])
+def add_user():
+    name = None
+    form = UserForm()
+    #validate form
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user is None:
+            user = User(name=form.name.data, email=form.email.data)
+            db.session.add(user)
+            db.session.commit()
+        name = form.name.data
+        form.name.data = ''
+        form.email.data = ''
+        our_user = User.querry.order_by(User.date_added)
+    return render_template("add_user.html", 
+    form=form,
+    name=name,
+    our_user=our_user)
 
 #create the first route
 @app.route('/')
@@ -64,23 +96,23 @@ def name():
         name=name, 
         form=form)
 
-#create the route
-@app.route('/user/add', methods=['GET', 'POST'])
-def add_user():
-    name = None
-    form = UserForm()
-    #validate form
-    if form.validate_on_submit():
-        user = Users.query.filter_by(email=form.email.data).first()
-        if user is None:
-            user = Users(name=form.name.data, email=form.email.data)
-            db.session.add(user)
-            db.session.commit()
-        name = form.name.data
-        form.name.data = ''
-        form.email.data = ''
-        our_users = Users.querry.order_by(Users.date_added)
-    return render_template("add_user.html", 
-    name=name,
-    form=form,
-    our_users=our_users)
+# #create the route
+# @app.route('/user/add', methods=['GET', 'POST'])
+# def add_user():
+#     name = None
+#     form = UserForm()
+#     #validate form
+#     if form.validate_on_submit():
+#         user = UserForm.query.filter_by(email=form.email.data).first()
+#         if user is None:
+#             user = UserForm(name=form.name.data, email=form.email.data)
+#             db.session.add(user)
+#             db.session.commit()
+#         name = form.name.data
+#         form.name.data = ''
+#         form.email.data = ''
+#         our_users = User.querry.order_by(User.date_added)
+#     return render_template("add_user.html", 
+#     name=name,
+#     form=form,
+#     our_users=our_users)
