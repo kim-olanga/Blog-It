@@ -1,3 +1,6 @@
+import email
+from enum import unique
+from operator import index
 from . import db, login_manager
 from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -55,16 +58,18 @@ class Blogs(db.Model):
     def _repr_(self):
         return f'Blog{self.company}'
 
-class Role(db.Model):
-
-    __tablename__ = 'roles'
-
+class Subscriber(db.Model):
+    __tablename__ = 'subscriber'
     id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String(255))
-    users = db.relationship('User',backref = 'role',lazy="dynamic")
+    email = db.Column(db.String(255), unique=True, index=True)
+
+    def save_subscribers(self):
+        db.session.add(self)
+        db.session.commit()
+    
 
     def __repr__(self):
-        return f'User {self.name}'
+        return f'User {self.email}'
 
 class Upvote(db.Model):
 
