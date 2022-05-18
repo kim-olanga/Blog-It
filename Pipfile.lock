@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "29db978b045b4d65c944f7e61bf60d2db0c208994c35568bac4a839808bf71fc"
+            "sha256": "3bcf193515f8612b94f1769d874fc1f31bc6317735b22103524ee24663f7c4b4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -129,6 +129,14 @@
             "index": "pypi",
             "version": "==0.4.6"
         },
+        "flask-login": {
+            "hashes": [
+                "sha256:1306d474a270a036d6fd14f45640c4d77355e4f1c67ca4331b372d3448997b8c",
+                "sha256:b9a4287a2d0067a7a482a23e40075e0d670f371974633fe890222dece4e02a74"
+            ],
+            "index": "pypi",
+            "version": "==0.6.1"
+        },
         "flask-migrate": {
             "hashes": [
                 "sha256:57d6060839e3a7f150eaab6fe4e726d9e3e7cffe2150fb223d73f92421c6d1d9",
@@ -137,6 +145,13 @@
             "index": "pypi",
             "version": "==3.1.0"
         },
+        "flask-script": {
+            "hashes": [
+                "sha256:6425963d91054cfcc185807141c7314a9c5ad46325911bd24dcb489bd0161c65"
+            ],
+            "index": "pypi",
+            "version": "==2.0.6"
+        },
         "flask-sqlalchemy": {
             "hashes": [
                 "sha256:2bda44b43e7cacb15d4e05ff3cc1f8bc97936cc464623424102bfc2c35e95912",
@@ -144,6 +159,13 @@
             ],
             "index": "pypi",
             "version": "==2.5.1"
+        },
+        "flask-uploads": {
+            "hashes": [
+                "sha256:53ecbd6033667d50ae02b63adebbaa33c7fc56c09e5293025810cf9d841ecb02"
+            ],
+            "index": "pypi",
+            "version": "==0.2.1"
         },
         "flask-wtf": {
             "hashes": [
@@ -213,6 +235,14 @@
             ],
             "markers": "python_version >= '3' and (platform_machine == 'aarch64' or (platform_machine == 'ppc64le' or (platform_machine == 'x86_64' or (platform_machine == 'amd64' or (platform_machine == 'AMD64' or (platform_machine == 'win32' or platform_machine == 'WIN32'))))))",
             "version": "==1.1.2"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
+                "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
+            ],
+            "index": "pypi",
+            "version": "==20.1.0"
         },
         "importlib-metadata": {
             "hashes": [
