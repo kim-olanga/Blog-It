@@ -1,62 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="{{ url_for('index')}}">Blog-it</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<nav class="navbar navbar-inverse" role="navigation" style="font-size: x-large;">
+    <a href="{{url_for('main.home')}}" class="navbar-brand" style="font-size: 25px;">HOMEEEE</a> 
+  
+      
+      <a href="{{url_for('main.new_blog')}}" class="navbar-brand" style="font-size: 25px;">Create a Blog</a>
+      <a href="{{url_for('main.blog')}}" class="navbar-brand" style="font-size: 25px;"> Check Blogz </a>
+      <a href="{{url_for('main.random')}}" class="navbar-brand" style="font-size: 25px;"> Quotes </a>
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{{ url_for('add_user')}}"> Add User </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href=" {{ url_for('user', name='john')}}">User Profile</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href=" {{ url_for('name')}}"> Form </a>
-          </li>
-
-          {% if current_user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('dashboard')}}">Dashboard</a>
-          </li>
-
-          {% if current_user.id == 1 %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('admin')}}">Admin</a>
-          </li>
-          {% endif %}
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
-          </li>
-
-        {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('add_user')}}">Register</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('login')}}">Login</a>
-          </li>
-          
-        {% endif %}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('add_post')}}">Add Blog Post</a>
-        </li>
-
-         <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('posts')}}">Posts</a>
-        </li>
-         
+      <div class="dropdown" style="font-size: x-large;">
+        <a class="btn btn-outline-light dropdown-toggle" style="width: 150px; font-size: 25px;" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          Account
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="font-size: 25px;">
+          <li><a class="dropdown-item" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+          <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Sign out</a></li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-secondary" type="submit">Search</button>
-        </form>
       </div>
-    </div>
-  </nav>
+</nav>
